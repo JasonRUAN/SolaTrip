@@ -17,6 +17,8 @@ const SYSTEM_PROGRAM = address("11111111111111111111111111111111");
 const FAUCET_DISC = hex("00623b1e908e710c");
 const FUND_ORDER_DISC = hex("e062846e9dd8ea36");
 const SUBMIT_REVIEW_DISC = hex("6a1e3253592ed5ef");
+const REGISTER_AGENT_DISC = hex("879d42c30271af1e");
+const SET_AGENT_ACTIVE_DISC = hex("59a8fa69fe45f6dd");
 
 const encoder = getAddressEncoder();
 
@@ -148,6 +150,65 @@ async function voucherAddress(tokenId: string): Promise<Address> {
     throw new Error("无法识别凭证编号");
   }
   return pda([new TextEncoder().encode("voucher"), u64(BigInt(orderId)), Uint8Array.of(index)]);
+}
+
+/** 服务商 Agent 账户，种子是 `agent` + 服务商公钥。 */
+export async function agentAccountAddress(provider: string): Promise<Address> {
+  return pda([new TextEncoder().encode("agent"), addr(address(provider))]);
+}
+
+/** 管理员签名 register_agent。服务商不必在线签名，账户只能创建一次。 */
+export async function registerAgentInstruction(params: {
+  admin: string;
+  provider: string;
+  name: string;
+  categoryMask: number;
+  endpoint: string;
+  description: string;
+  website: string;
+}): Promise<Instruction> {
+  const admin = address(params.admin);
+  const provider = address(params.provider);
+  const mint = address(CONTRACTS.usdcMint);
+  return {
+    programAddress: PROGRAM_ID,
+    data: concat(
+      REGISTER_AGENT_DISC,
+      borshString(params.name),
+      Uint8Array.of(params.categoryMask),
+      borshString(params.endpoint),
+      borshString(params.description),
+      borshString(params.website),
+    ),
+    accounts: [
+      { address: admin, role: AccountRole.WRITABLE_SIGNER },
+      { address: address(CONTRACTS.config), role: AccountRole.READONLY },
+      { address: provider, role: AccountRole.READONLY },
+      { address: await agentAccountAddress(params.provider), role: AccountRole.WRITABLE },
+      { address: mint, role: AccountRole.READONLY },
+      { address: await associatedTokenAddress(params.provider, CONTRACTS.usdcMint), role: AccountRole.WRITABLE },
+      { address: TOKEN_PROGRAM, role: AccountRole.READONLY },
+      { address: ATA_PROGRAM, role: AccountRole.READONLY },
+      { address: SYSTEM_PROGRAM, role: AccountRole.READONLY },
+    ],
+  };
+}
+
+/** 管理员签名 set_agent_active，只改启停，不改名称或 endpoint。 */
+export async function setAgentActiveInstruction(params: {
+  admin: string;
+  provider: string;
+  active: boolean;
+}): Promise<Instruction> {
+  return {
+    programAddress: PROGRAM_ID,
+    data: concat(SET_AGENT_ACTIVE_DISC, Uint8Array.of(params.active ? 1 : 0)),
+    accounts: [
+      { address: address(params.admin), role: AccountRole.WRITABLE_SIGNER },
+      { address: address(CONTRACTS.config), role: AccountRole.READONLY },
+      { address: await agentAccountAddress(params.provider), role: AccountRole.WRITABLE },
+    ],
+  };
 }
 
 /** 持有人签名提交评价。评价账户和服务商累计分都由这笔交易创建。 */

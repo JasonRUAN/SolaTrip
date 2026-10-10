@@ -27,13 +27,25 @@ import {
   type CategoryCode,
 } from "@/lib/types";
 
-const DESC_MAX = 200;
+const DESC_MAX_BYTES = 128;
+
+function utf8Size(value: string): number {
+  return new TextEncoder().encode(value).length;
+}
+
+function clampUtf8(value: string, maxBytes: number): string {
+  const bytes = new TextEncoder().encode(value);
+  if (bytes.length <= maxBytes) return value;
+  let end = maxBytes;
+  while (end > 0 && (bytes[end] & 0xc0) === 0x80) end -= 1;
+  return new TextDecoder().decode(bytes.subarray(0, end));
+}
 const inputClass =
   "w-full rounded-xl border border-brand-100 bg-white px-3 py-2 text-sm font-semibold text-ink-900 outline-none focus:border-brand-400";
 
 export default function AdminPage() {
   const { isConnected } = useWallet();
-  const { isOwner, isPending, register, setActive } = useRegistryAdmin();
+  const { isOwner, ownerState, isPending, register, setActive } = useRegistryAdmin();
   const { agents, refresh } = useAgents();
   const { t, locale } = useT();
   const formRef = useRef<HTMLDivElement>(null);
@@ -71,7 +83,7 @@ export default function AdminPage() {
     setAgent(item.address);
     setName(item.name);
     setCategories(item.categories.length ? item.categories : [item.category]);
-    setDescription(item.description.slice(0, DESC_MAX));
+    setDescription(clampUtf8(item.description, DESC_MAX_BYTES));
     setWebsite(item.website);
     setEndpoint(item.endpoint);
     setEditing(true);
@@ -115,7 +127,7 @@ export default function AdminPage() {
     }
     try {
       await register({
-        agent: agent as `0x${string}`,
+        agent: agent.trim(),
         name: name.trim(),
         categories,
         endpoint: endpoint.trim().replace(/\/+$/, ""),
@@ -169,7 +181,17 @@ export default function AdminPage() {
         </div>
       ) : null}
 
-      {isConnected && !isOwner ? (
+      {isConnected && ownerState === "loading" ? (
+        <p className="mb-6 text-sm text-ink-500">{t("admin.checkingOwner")}</p>
+      ) : null}
+
+      {isConnected && ownerState === "error" ? (
+        <p className="mb-6 rounded-2xl bg-amber-50 px-4 py-3 text-sm text-amber-800">
+          {t("admin.ownerLookupFailed")}
+        </p>
+      ) : null}
+
+      {isConnected && ownerState === "ready" && !isOwner ? (
         <p className="mb-6 rounded-2xl bg-amber-50 px-4 py-3 text-sm text-amber-800">
           {t("admin.notOwner")}
         </p>
@@ -235,7 +257,7 @@ export default function AdminPage() {
                 <div className="flex gap-2">
                   <input
                     className={inputClass}
-                    placeholder="http://127.0.0.1:3011"
+                    placeholder={t("admin.endpointPlaceholder")}
                     value={endpoint}
                     onChange={(e) => {
                       setEndpoint(e.target.value);
@@ -281,7 +303,7 @@ export default function AdminPage() {
                 </span>
                 <input
                   className={inputClass}
-                  placeholder="0x…"
+                  placeholder={t("admin.addressPlaceholder")}
                   value={agent}
                   onChange={(e) => setAgent(e.target.value)}
                 />
@@ -333,20 +355,19 @@ export default function AdminPage() {
                   {t("admin.descriptionLabel")}
                   <span
                     className={
-                      description.length >= DESC_MAX ? "text-coral-500" : ""
+                      utf8Size(description) >= DESC_MAX_BYTES ? "text-coral-500" : ""
                     }
                   >
-                    {description.length}/{DESC_MAX}
+                    {utf8Size(description)}/{DESC_MAX_BYTES}
                   </span>
                 </span>
                 <textarea
-                  maxLength={DESC_MAX}
                   rows={3}
                   className={`${inputClass} resize-none font-medium`}
                   placeholder={t("admin.descriptionPlaceholder")}
                   value={description}
                   onChange={(e) =>
-                    setDescription(e.target.value.slice(0, DESC_MAX))
+                    setDescription(clampUtf8(e.target.value, DESC_MAX_BYTES))
                   }
                 />
               </label>
@@ -357,7 +378,7 @@ export default function AdminPage() {
                 </span>
                 <input
                   className={inputClass}
-                  placeholder="https://example.com"
+                  placeholder={t("admin.websitePlaceholder")}
                   value={website}
                   onChange={(e) => setWebsite(e.target.value)}
                 />
@@ -380,7 +401,12 @@ export default function AdminPage() {
               ) : null}
             </>
           ) : (
-            <p className="text-xs text-ink-400">{t("admin.collapsedHint")}</p>
+            <>
+              <p className="text-xs text-ink-400">{t("admin.collapsedHint")}</p>
+              {message ? (
+                <p className="text-xs text-ink-600">{message}</p>
+              ) : null}
+            </>
           )}
         </div>
       ) : null}
@@ -457,11 +483,16 @@ export default function AdminPage() {
                 isOwner={isOwner}
                 pending={isPending}
                 onEdit={fillFrom}
-                onToggle={(current) =>
-                  void setActive(current.address, !current.active).then(() =>
-                    refresh(),
-                  )
-                }
+                onToggle={(current) => {
+                  setMessage(null);
+                  void setActive(current.address, !current.active)
+                    .then(() => refresh())
+                    .catch((error) => {
+                      setMessage(
+                        walletErrorText(locale, error, t("admin.statusFailed")),
+                      );
+                    });
+                }}
               />
             ))}
           </div>
