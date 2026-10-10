@@ -1,0 +1,603 @@
+import type { Dictionary } from "./zh";
+
+/**
+ * 英文字典。
+ *
+ *  类型限定为 `Dictionary`（= typeof zh），漏 key / 多 key 都会在编译期报错。
+ */
+export const en: Dictionary = {
+  meta: {
+    title: "SolaTrip Agent · On-Chain AI Travel Concierge",
+    description:
+      "Describe your trip in one sentence: the AI Agent streams an itinerary and quote, escrow payment and revenue split settle on-chain, flights / hotels / tickets become Solana voucher NFTs, and merchants redeem them offline via QR code.",
+  },
+
+  nav: {
+    plan: "Plan Trip",
+    vouchers: "My Vouchers",
+    merchant: "Merchant",
+    admin: "Providers",
+  },
+
+  locale: {
+    label: "Language",
+    zh: "中文",
+    en: "English",
+    switchTo: "Switch to {language}",
+  },
+
+  common: {
+    all: "All",
+    allStatus: "All statuses",
+    active: "Active",
+    inactive: "Disabled",
+    recommended: "Recommended",
+    copied: "Copied",
+    demo: "DEMO Sample Data",
+    disclaimerShort: "Sample data · not real bookable inventory",
+    disclaimerLong:
+      "Itineraries and prices are sample data, not real bookable inventory. Wallet approvals, payments, settlement and voucher issuance are real transactions on Solana devnet.",
+    onChainVoucher: "Solana devnet · On-chain voucher",
+    explorer: "Explorer ↗",
+    dash: "—",
+  },
+
+  units: {
+    paxSuffix: "×{n} guests",
+    nightsSuffix: "×{n} nights",
+    nights: "{n} nights",
+    count: "{n}",
+    agents: "{n}",
+    days: "{n} days",
+    daySuffix: "{n} days",
+    rooms: "{n} rooms",
+    minutes: "{n} min",
+    points: "{n} pts",
+    reviews: "{n} reviews",
+    items: "{n}",
+    free: "Free",
+    noRating: "No rating",
+  },
+
+  weekdays: "Sun,Mon,Tue,Wed,Thu,Fri,Sat",
+  monthDayFormat: "{m} {d}, {w}",
+
+  category: {
+    flight: "Flights",
+    hotel: "Hotels",
+    attraction: "Attractions",
+    dining: "Dining",
+  },
+
+  agentKey: {
+    flight: "Flights",
+    hotel: "Hotels",
+    attraction: "Attractions",
+    dining: "Dining",
+  },
+
+  phase: {
+    understanding: "Understanding",
+    sourcing: "Quoting",
+    planning: "Planning",
+    budgeting: "Budgeting",
+    done: "Done",
+  },
+
+  tool: {
+    search_flights: "Search flights",
+    search_hotels: "Search hotels",
+    search_attractions: "Search attractions",
+    search_restaurants: "Search restaurants",
+    quote_total: "Total quote",
+  },
+
+  recommendMode: {
+    balanced: "Recommended",
+    rating: "Top rated",
+    price: "Lowest price",
+    value: "Best value",
+    budget: "Budget fit",
+    shortBalanced: "Balanced",
+    shortRating: "Rating",
+    shortPrice: "Price",
+    shortValue: "Value",
+    shortBudget: "Budget",
+    hintBalanced:
+      "Ranks by score, reputation and budget fit — the hassle-free default",
+    hintRating: "Prefers providers with higher scores and more reviews",
+    hintPrice: "Quotes the selected providers, then sorts by lowest price",
+    hintValue: "Score ÷ price — balances reputation against cost",
+    hintBudget: "Sorts cheap first, then upgrades within budget",
+  },
+
+  settlementStatus: {
+    pending: "Pending",
+    settling: "Settling",
+    paid: "Paid",
+    issued: "Issued",
+    failed: "Failed",
+  },
+
+  voucherStatus: {
+    Issued: "Valid",
+    Redeemed: "Redeemed",
+    Voided: "Voided",
+  },
+
+  budgetTone: {
+    comfortable: "Comfortable",
+    within: "Within budget",
+    over: "Over budget",
+  },
+
+  home: {
+    title: "AI Trip Planning Workspace",
+    subtitle:
+      "Describe your trip → Agents quote & orchestrate → Escrow payment on-chain → Provider Agents split funds and issue vouchers",
+    replan: "Replan",
+  },
+
+  wallet: {
+    disconnect: "Disconnect",
+    connecting: "Connecting…",
+    connect: "Connect Wallet",
+    noWallet: "No wallet detected — install Phantom or Solflare",
+  },
+
+  agentCard: {
+    noReviews: "No reviews yet",
+    noDescription: "No description",
+    noWebsite: "No website",
+    noEndpoint: "No API",
+    probe: "Probe",
+    edit: "Edit",
+    alsoCovers: " · also {labels}",
+    noComment: "(no comment)",
+    selectedCancel: "Selected · click to remove",
+    addToQuote: "Add to quote",
+  },
+
+  health: {
+    idle: "Not probed",
+    checking: "Probing…",
+    online: "Online",
+    chainOn: " · chain linked",
+    chainOff: " · no chain",
+    fillEndpoint: "Enter the API endpoint first",
+    needHttp: "The address must start with http:// or https://",
+    notOk: "health returned ok=false",
+    probeFailed: "Probe failed",
+    timeout: "Timed out (5s)",
+    unreachable: "Cannot connect — check the service is up and allows CORS",
+  },
+
+  stream: {
+    orchestrator: "Orchestrator",
+    thinking: "Thinking",
+    collapse: "Collapse",
+    add: "Add",
+    removeItem: "Remove {title}",
+    addFromCandidates: "Add a candidate to this day",
+    allCandidatesUsed:
+      "Every candidate is already in the itinerary — you can also write a custom item",
+    addItem: "Add",
+    customItem: "Custom item",
+    customTitlePlaceholder: "e.g. Stroll around Senso-ji",
+    write: "Save",
+    budget: "Budget",
+    budgetOf: "/ Budget ${budget} ({percent}%)",
+    idleTitle: "Say one sentence on the left and the Agent gets to work",
+    idleBody:
+      "It parses your request, then queries the flight / hotel / attraction / dining providers you picked in parallel, recommends by strategy, and finally builds a day-by-day itinerary with a quote.",
+    offline: "Offline demo stream",
+    degraded: "Model degraded · deterministic itinerary",
+    applyRecommended: "Apply recommendation",
+    flightOffers: "Flight options",
+    hotelOffers: "Hotel options",
+    attractionOffers: "Attraction options",
+    diningOffers: "Restaurant options",
+    hotelHint: "Pick several, or none",
+    daysTitle: "Day-by-day itinerary",
+    daysReady: "{ready}/{total} days ready",
+    daysEditable: " · add or remove per day",
+    download: "Download itinerary",
+    working: "{tool} · Agent working",
+  },
+
+  offers: {
+    checkInWord: "Check in at",
+    aboutWord: "about ",
+    starSuffix: "★",
+    perPersonSuffix: "/ guest",
+    depart: "Depart",
+    arrive: "Arrive",
+    duration: "Duration",
+    fare: "Fare",
+    fareValue: "${price} / guest · {seats} left",
+    roomType: "Room",
+    checkIn: "Check-in",
+    checkOut: "Check-out",
+    total: "Total",
+    totalValue: "${total} (${perNight}/night)",
+    needBooking: "Booking required",
+    noBooking: "No booking needed",
+    suggestedDuration: "Suggested time",
+    pricePerPerson: "${price} / guest",
+    timeSpent: "Time",
+    perPerson: "Per guest",
+    demoData: "Sample data",
+    selectedCount: "{selected}/{total} selected",
+    selectAll: "Select all",
+    clearAll: "Clear",
+  },
+
+  quote: {
+    empty: "The quote appears once planning is finished",
+    title: "Quote",
+    demoPrice: "Sample prices",
+    noSelection: "No options selected yet",
+    total: "Total",
+    doneTitle: "🎉 Payment complete, {n} vouchers issued",
+    doneBody:
+      "Funds were split between the provider Agents on-chain, and the voucher NFTs were sent to your wallet.",
+    viewVouchers: "View my vouchers →",
+  },
+
+  pay: {
+    stepConnect: "Connect wallet",
+    stepConnectHint: "Phantom / Solflare on Solana devnet",
+    stepFaucet: "Claim test tokens",
+    stepFaucetHint: "10,000 test tokens each time, repeatable",
+    stepApprove: "Approve settlement contract",
+    stepApproveHint:
+      "Solana payment is signed by the traveler; there is no separate approval",
+    stepPay: "Confirm payment",
+    stepPayHint: "Funds enter on-chain escrow, status Funded",
+    submitting: "Submitting…",
+    settling: "Settling…",
+    demoPay: "Demo mode: simulated payment & settlement",
+    notDeployed:
+      "Deployment config is missing, so payment cannot start. Sync the devnet deployment first.",
+    needSelection: "Select at least one option before paying.",
+    connectFirst: "Connect wallet first",
+    claiming: "Claiming…",
+    claim: "Claim",
+    approving: "Approving…",
+    approve: "Approve",
+    waitingSignature: "Waiting for wallet signature…",
+    claimingTokens: "Claiming test tokens…",
+    checkingChain: "Checking on-chain status…",
+    done: "Done",
+    claimAndPay: "Claim test tokens and pay",
+    approveAndPay: "Approve and pay (2 signatures)",
+    confirmPay: "Confirm payment (1 signature)",
+    signatureNote:
+      "At most 2 signatures (claim / pay). Later settlement and voucher minting are paid by the orchestrator.",
+  },
+
+  settlement: {
+    title: "Settlement timeline",
+    issued: "{issued}/{total} issued",
+    working: " · {n} in progress",
+    failed: " · {n} failed",
+    scroll: " · scroll for the rest",
+    retryFailed: "Retry {n} failed",
+    retrying: "Retrying…",
+    voucherCode: "Voucher {tokenId} {code}",
+  },
+
+  toolCard: {
+    calling: "Calling",
+    result: "{ms}ms · {count} items",
+    noArgs: "No arguments",
+  },
+
+  voucher: {
+    titleSuffix: "{label} voucher",
+    holder: "Holder {address}",
+    validUntil: "Valid until {date}",
+    viewExplorer: "View on Explorer ↗",
+  },
+
+  review: {
+    ratingGroup: "Service rating",
+    points: "{n} pts",
+    canRateAfter: "You can rate {provider} after redemption",
+    notDeployed: "Review contract is not deployed on this network",
+    yourReview: "Your review:",
+    holderOnly: "Only the holder can review",
+    rateTitle: "Rate {provider}",
+    commentPlaceholder: "How was the service? (optional, 280 chars max)",
+    submitting: "Submitting…",
+    submit: "Submit review",
+  },
+
+  tripCard: {
+    generating: "Generating…",
+    generateFailed: "Generation failed — open to retry",
+    generateHint: "Expand to generate an AI summary of this trip",
+    summaryTitle: "AI Trip Summary",
+    offlineSummary: "Offline summary",
+    orchestrator: "Orchestrator",
+    regenerate: "Regenerate",
+    summaryLoading: "AI is reading {n} vouchers to summarize your trip…",
+    tips: "Travel tips",
+    itineraryTitle: "Day-by-day itinerary",
+    itineraryLoading: "Loading…",
+    itineraryPreview: "{n} days · D1 {first} → D{n} {last}",
+    noItinerary: "No itinerary yet",
+    download: "Download itinerary",
+    loadingItinerary: "Loading itinerary…",
+    noDownloadable: "There is no downloadable itinerary for this trip yet",
+    daysSuffix: "{n} days",
+    paxRooms: "{pax} guests · {rooms} rooms",
+    departOn: "Departs {date}",
+    latest: "Latest",
+    travelOn: "Travel on {date}",
+    order: "Order {id}",
+    countSuffix: "{n}",
+    categoryTip: "{label} · {n}",
+    quoteDetails: "Quote details",
+  },
+
+  itinerary: {
+    empty: "No items selected for this day",
+    emptyShort: "Nothing scheduled",
+  },
+
+  form: {
+    title: "Tell us about your trip",
+    placeholder:
+      "e.g. Tokyo for 5 days from Shanghai, 2 people, budget 8000, good food",
+    parsedTitle: "Parsed parameters (editable)",
+    origin: "From",
+    destination: "To",
+    startDate: "Departure date",
+    days: "Days",
+    pax: "Travelers",
+    budget: "Budget (USD)",
+    preferences: "Preferences",
+    providers: "Providers to quote",
+    auto: "Auto",
+    manual: "Manual",
+    providerCount: "{mode} · {n}",
+    recommendMode: "Ranking strategy",
+    noAgent: "No agents",
+    collapse: "Collapse",
+    addAgent: "+ Add",
+    autoAll: "Auto-quote all",
+    autoAllHint:
+      "By default every registered provider in each category is queried",
+    pickedCount: "{n} selected",
+    running: "Agent planning…",
+    start: "Start planning ✈",
+  },
+
+  vouchersPage: {
+    title: "My Vouchers",
+    connectHint:
+      "Connect your wallet to see the flight / hotel / attraction / dining voucher NFTs that provider Agents issued to your address.",
+    subtitle:
+      "Every voucher is an NFT on Solana devnet — merchants can scan the QR code to redeem it",
+    readAt: "Read at {time}",
+    syncing: " · verifying on-chain state in the background",
+    expandAll: "Expand all",
+    collapseAll: "Collapse all",
+    loading: "Loading…",
+    verifying: "Verifying…",
+    refresh: "Refresh on-chain data",
+    statIssued: "Valid",
+    statRedeemed: "Redeemed",
+    statVoided: "Voided",
+    loadFailed: "Failed to read on-chain vouchers",
+    retry: "Retry",
+    empty: "This address has no on-chain vouchers yet",
+    emptyHint:
+      "After a trip is paid and settled, provider Agents issue flight / hotel / attraction / dining vouchers to this address.",
+    goPlan: "Plan a trip",
+  },
+
+  merchant: {
+    title: "Merchant Redemption",
+    subtitle:
+      "Show the QR code → merchant scans and verifies → the issuing Agent marks it redeemed on-chain → single use only",
+    step1: "① Enter voucher ID",
+    tokenPlaceholder: "e.g. ST-000001-01",
+    identity: "Redemption identity auto-matched:",
+    identityEmpty: "The issuing Agent appears once the voucher loads",
+    redeeming: "Redeeming…",
+    voided: "Voucher voided",
+    alreadyRedeemed: "Redeemed · single use only",
+    confirm: "② Confirm redemption",
+    unavailable:
+      "This voucher is already redeemed or voided and cannot be reused",
+    notFound: "Voucher not found — double-check the number",
+    notExist: "Voucher does not exist",
+    redeemFailed: "Redemption failed",
+    redeemSuccess: "Redeemed · {provider} marked on-chain",
+    demoSuffix: " (demo mode, no on-chain transaction)",
+    issuerFallback: "Issuing Agent",
+    backendDown: "Backend unreachable — make sure the backend is running",
+    rateLink: "Rate this voucher →",
+    demoLabel: "Demo redemption",
+    demoNote: "Scan the QR code on a traveler's voucher, or type the ID",
+    previewEmpty: "Enter a voucher ID to preview it here",
+    modeScan: "Scan",
+    modeManual: "Type ID",
+    scanHint: "Place the voucher QR code inside the frame",
+    scanOpening: "Opening the camera…",
+    cameraDenied:
+      "Camera permission was denied. Allow it in the browser, or type the ID instead.",
+    cameraMissing: "No camera was found on this computer. Type the ID instead.",
+    cameraFailed: "The camera could not be opened. Type the ID instead.",
+    useManual: "Type the ID instead",
+    qrUnrecognized: "This is not a SolaTrip voucher QR code",
+    stageHint: "Merchant iPhone. Scanning uses this computer's camera.",
+  },
+
+  admin: {
+    title: "Provider Management",
+    subtitle:
+      "Only the AgentRegistry owner can register, enable or disable providers. A multi-category provider can check several categories and will be quoted for each one.",
+    connectAdmin: "Connect the admin wallet first",
+    notOwner: "This wallet is not the registry owner — list is read-only.",
+    updateAgent: "Update Agent",
+    registerAgent: "Register Agent",
+    addAgent: "Add Agent",
+    collapseForm: "Collapse",
+    collapsedHint: 'Tap "Add Agent" to register or update a provider.',
+    clearForm: "Clear form",
+    endpointLabel: "Provider API endpoint",
+    probing: "Probing",
+    probe: "Probe",
+    fillFromHealth: "Fill name, address and categories",
+    noAddress: "No address returned",
+    addressLabel: "Agent address",
+    nameLabel: "Name",
+    categoriesLabel: "Service categories (pick at least one)",
+    needCategory: "Select at least one category",
+    descriptionLabel: "Description",
+    descriptionPlaceholder: "One line on what this provider offers travelers",
+    websiteLabel: "Website",
+    submitting: "Submitting…",
+    submitUpdate: "Update registerAgent",
+    submitRegister: "registerAgent",
+    statProviders: "Providers",
+    statActive: "Active",
+    searchPlaceholder: "Search name or address",
+    noMatch: "No providers match the filters",
+    noMatchHint:
+      "Adjust the filters, or register a new Agent with the form above",
+    errFillFields: "Enter a valid address, name and HTTP endpoint",
+    errNeedCategory: "Select at least one service category",
+    errWebsiteHttp: "Website must start with http:// or https://",
+    errEndpointHttp: "API address must start with http:// or https://",
+    registered: "Registration transaction submitted",
+    registerFailed: "Registration failed",
+  },
+
+  verify: {
+    brand: "SolaTrip Voucher Verification",
+    alt: "SolaTrip Agent",
+    back: "Back to workspace",
+    valid: "Voucher valid",
+    redeemed: "Voucher redeemed",
+    unusable: "Voucher not usable",
+    offlineCheck: "(backend record; on-chain check unavailable)",
+    onchainCheck: "(on-chain status verified)",
+    fallbackTitle: "Voucher {id}",
+    issuer: "Issuer",
+    holder: "Holder",
+    validity: "Validity",
+    category: "Category",
+    issuerAddress: "Issuer address ↗",
+    demoNote:
+      "Demo voucher, not a real bookable ticket. No personal or sensitive information is shown on this page.",
+    publicNote: "Anyone can scan and verify — no wallet needed",
+    notFound:
+      "The backend has no detail for this voucher yet — it may not be issued or the cache expired",
+  },
+
+  agentsPage: {
+    market: "MARKETPLACE",
+    title: "Provider Marketplace",
+    subtitle:
+      "Pick several providers per category to quote. Scores come from on-chain ratings after redemption; descriptions and websites live in AgentRegistry.",
+    statProviders: "Providers",
+    statAvg: "Avg rating",
+    statReviews: "Reviews",
+    sortBalanced: "Recommended",
+    sortRating: "Top rated",
+    empty: "No registered provider Agents yet",
+    goAdmin: "Register in admin →",
+    picked: "{picked} / {total} selected",
+  },
+
+  errors: {
+    contractNotDeployed:
+      "Contracts are not deployed — cannot read on-chain vouchers",
+    voucherReadFailed: "Failed to read on-chain vouchers, please retry later",
+    agentListFailed: "Cannot read the provider list",
+    chainReadFailed: "Failed to read from chain",
+    reviewNotDeployed: "Review contract is not deployed",
+    connectWalletFirst: "Connect your wallet first",
+    submitFailed: "Submission failed",
+    summaryFailed: "Failed to generate the AI trip summary, please retry later",
+    summaryHttp: "Trip summary generation failed (HTTP {status})",
+    claimFailed: "Claim failed",
+    approveFailed: "Approval failed",
+    userRejected: "Wallet signature cancelled — please try again",
+    blockhashNotFound:
+      "The blockhash expired. Refresh the page, reconnect the wallet, and submit again",
+    backendUnreachable: "Cannot reach the agents service {url}: {msg}",
+    orderRegisterFailed: "Order registration failed: HTTP {status} {detail}",
+    settlementDisconnected:
+      "Settlement progress stream disconnected ({url}): {msg}",
+    walletNotConnected: "Wallet not connected",
+    noSol:
+      "This wallet has no SOL, so it cannot pay rent to create the test-token account. Claim devnet SOL first, then claim the test tokens.",
+    selfDealing:
+      "This wallet is the address of provider “{provider}”; the contract forbids a provider paying itself (ProviderIsTraveler). Switch to a traveler wallet and retry.",
+    insufficientBalance:
+      "Not enough test tokens: balance {balance}, this order needs {total}",
+    noOrderId:
+      "The orchestrator did not return an order id, so payment stopped",
+    payFailed: "Payment failed",
+    sseFailed: "SSE connection failed: HTTP {status}",
+    tripTitle: "Trip #{id}",
+    voucherFallbackName: "Voucher {id}",
+    voucherFallbackDesc:
+      "Solana devnet on-chain voucher (off-chain details unavailable)",
+    nextActionDemo: "Demo mode: simulated payment & settlement",
+    nextActionConnect: "Connect wallet",
+    nextActionPay: "Confirm payment",
+
+    /** Backend error codes → copy. Keys must match the `code` sent by the agents service. */
+    codes: {
+      PLAN_FAILED: "Planning failed, please try again later",
+      REGISTRY_NOT_DEPLOYED:
+        "The orchestrator has no provider registry contract configured, so the provider list is unavailable. Please contact an administrator.",
+      REGISTRY_READ_FAILED:
+        "Failed to read the on-chain provider list, please try again later",
+      NO_REGISTERED_AGENTS:
+        "No provider Agents are registered on-chain yet. Register and activate providers in AgentRegistry, then retry.",
+      NO_PROVIDER_FOR_CATEGORY:
+        "No provider Agents are available for the selected category — pick providers again and retry",
+      PROVIDER_NOT_REGISTERED:
+        "One of the selected providers is not registered or not active — please pick providers again and retry",
+      QUOTE_MISSING:
+        "No quote found for this order — re-plan the trip and check out again",
+      SETTLE_FAILED: "Settlement failed, please try again later",
+      ALREADY_SETTLING:
+        "This order is still settling. Wait for this round to finish, then retry.",
+      ORDER_NOT_FOUND: "Order not found. Pay again and then retry.",
+      VOUCHER_NOT_FOUND: "Voucher not found — it may not be issued yet",
+      ALREADY_REDEEMED: "Redeemed · single use only",
+      VOUCHER_VOIDED: "Voucher voided",
+      REDEEM_FAILED: "Redemption failed, please try again later",
+      METADATA_NOT_FOUND:
+        "The voucher's off-chain details are missing and cannot be shown",
+      SUMMARY_FAILED:
+        "Failed to generate the AI trip summary, please retry later",
+      INVALID_REQUEST:
+        "The request is missing required parameters — go back one step and retry",
+      INTERNAL_ERROR: "Service temporarily unavailable, please retry later",
+    },
+  },
+
+  exportDoc: {
+    fallbackTitle: "SolaTrip Itinerary",
+    title: "{origin} → {destination} · {days}-day trip",
+    departDate: "- Departure: {date}",
+    pax: "- Travelers: {n}",
+    rooms: "- Rooms: {n}",
+    budget: "- Budget: ${n}",
+    preferences: "- Preferences: {list}",
+    dayCost: " · day total ${amount}",
+    emptyDay: "_Nothing scheduled_",
+    quoteTitle: "## Quote details",
+    quoteLine: "- {category} · {label} — ${amount}",
+    quoteTotal: "**Total ${total}**",
+  },
+};

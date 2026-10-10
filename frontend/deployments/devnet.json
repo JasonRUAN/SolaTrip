@@ -1,0 +1,17 @@
+{
+  "cluster": "devnet",
+  "chainId": "solana:devnet",
+  "deployed": true,
+  "programId": "GohAZHAeetcoxXZ19Mbinv2i6QTuwCyDptdM8C4VzMD5",
+  "usdcMint": "6GJoHajJtb22uHnUWjbGsx4yfyoo4EWGoHHwXcUtchLV",
+  "config": "4PywvWzHJ7Aif7PDiotnDVwK9SGWWCVDx4XiNBjyPTYc",
+  "orchestrator": "2pymZ24zE6AaVyfwj7V1qVsn2kxhGeoq54Tch4D4QEow",
+  "agents": {
+    "flight": "4sXdVBxi86pt7mNgUHrh6zsJiTfMt4njdLaCwWEmWsSu",
+    "hotel": "57NHfwyWhtabfEhd5PcfFJKzZp2RknCSt18S4ivzg2uC",
+    "attraction": "2mN8QwTmmKtoAVEYVgNaRE35HaKVEQEZryEfT9v6x5s6",
+    "dining": "AVb3WYF6w3EFDu3iNbTRPNfnuTEpALQBYDxRUryi7Xn2"
+  },
+  "rpc": "https://devnet.helius-rpc.com/?api-key=46bc1e48-7d89-4a28-add5-2bf647a284be",
+  "explorer": "https://explorer.solana.com"
+}
