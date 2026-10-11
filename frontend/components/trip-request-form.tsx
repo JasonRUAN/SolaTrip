@@ -74,7 +74,7 @@ export function TripRequestForm({
   const [recommendMode, setRecommendMode] = useState<RecommendMode>(DEFAULT_RECOMMEND_MODE);
   const [openKey, setOpenKey] = useState<AgentKey | null>(null);
   const [providersOpen, setProvidersOpen] = useState(false);
-  const { agents } = useAgents();
+  const { agents, loading: agentsLoading, error: agentsError } = useAgents();
 
   useEffect(() => {
     // 默认「自动询价全部」；只有用户显式切到手动过，才恢复上次的手动选择
@@ -102,6 +102,7 @@ export function TripRequestForm({
   const selected: ProviderSelection = autoAll ? defaults : { ...defaults, ...manual };
 
   const totalPicked = AGENT_KEYS.reduce((sum, key) => sum + (selected[key]?.length ?? 0), 0);
+  const providersBlocked = !agentsLoading && !agents.some((agent: AgentProfile) => agent.active);
 
   const patchRecommendMode = (mode: RecommendMode) => {
     setRecommendMode(mode);
@@ -432,10 +433,19 @@ export function TripRequestForm({
         ) : null}
       </div>
 
+      {providersBlocked ? (
+        <p className="mb-3 rounded-2xl border border-coral-500/30 bg-coral-100 px-3 py-2 text-xs font-semibold leading-5 text-coral-500">
+          {agentsError ?? t("errors.codes.NO_REGISTERED_AGENTS")}
+        </p>
+      ) : null}
+
       <button
         type="button"
-        disabled={running}
-        onClick={() => onSubmit(request, selected, recommendMode)}
+        disabled={running || providersBlocked}
+        onClick={() => {
+          if (providersBlocked) return;
+          onSubmit(request, selected, recommendMode);
+        }}
         className="sky-gradient flex h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-2xl text-base font-bold text-white shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-glow disabled:cursor-not-allowed disabled:opacity-60"
       >
         {running ? t("form.running") : t("form.start")}

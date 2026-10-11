@@ -21,6 +21,7 @@ import {
   CATEGORY_ICON,
   PHASE_ORDER,
   RECOMMEND_MODES,
+  type AgentProfile,
   type Phase,
   type TripRequest,
 } from "@/lib/types";
@@ -282,7 +283,7 @@ export function AgentStream({
   selectionLocked?: boolean;
 }) {
   const { toggleOffer, setCategorySelection, setRecommendMode, applyRecommended } = usePlanRun();
-  const { agents } = useAgents();
+  const { agents, loading: agentsLoading, error: agentsError } = useAgents();
   const { t, locale } = useT();
   const idle = state.status === "idle";
   const canSelect = state.status === "done" && Boolean(state.quote) && !selectionLocked;
@@ -337,6 +338,17 @@ export function AgentStream({
 
   const canApplyRecommended =
     canSelect && !sameIdSet(state.selectedOfferIds, state.recommendedOfferIds);
+
+  if (!agentsLoading && !agents.some((agent: AgentProfile) => agent.active)) {
+    return (
+      <div className="flex h-full flex-col items-center justify-center gap-3 rounded-3xl border border-coral-500/30 bg-coral-100/60 px-6 py-16 text-center">
+        <span className="text-4xl">⚠️</span>
+        <p className="max-w-md text-sm font-semibold leading-6 text-coral-500">
+          {agentsError ?? t("errors.codes.NO_REGISTERED_AGENTS")}
+        </p>
+      </div>
+    );
+  }
 
   if (idle) {
     return (

@@ -9,7 +9,8 @@ import { formatUsd } from "@/lib/format";
 import { useT } from "@/lib/i18n/context";
 import { budgetToneText, categoryLabel } from "@/lib/i18n/labels";
 import type { BudgetState } from "@/lib/i18n/labels";
-import type { Quote } from "@/lib/types";
+import { useAgents } from "@/hooks/use-agents";
+import type { AgentProfile, Quote } from "@/lib/types";
 
 const CATEGORY_ICON: Record<number, string> = {
   0: "✈️",
@@ -34,6 +35,19 @@ export function QuotePanel({
   checkout: ReturnType<typeof useCheckout>;
 }) {
   const { t, locale } = useT();
+  const { agents, loading: agentsLoading, error: agentsError } = useAgents();
+  const providersBlocked = !agentsLoading && !agents.some((agent: AgentProfile) => agent.active);
+
+  if (providersBlocked) {
+    return (
+      <div className="rounded-3xl border border-coral-500/30 bg-coral-100/70 px-5 py-10 text-center">
+        <span className="text-3xl">⚠️</span>
+        <p className="mt-2 text-sm font-semibold leading-6 text-coral-500">
+          {agentsError ?? t("errors.codes.NO_REGISTERED_AGENTS")}
+        </p>
+      </div>
+    );
+  }
 
   if (!quote) {
     return (
