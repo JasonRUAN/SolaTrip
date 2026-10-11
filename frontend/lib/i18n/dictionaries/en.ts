@@ -442,7 +442,8 @@ export const en: Dictionary = {
       "Only the AgentRegistry owner can register, enable or disable providers. A multi-category provider can check several categories and will be quoted for each one.",
     connectAdmin: "Connect the admin wallet first",
     checkingOwner: "Checking the admin wallet…",
-    ownerLookupFailed: "Could not read the on-chain admin. Refresh and try again.",
+    ownerLookupFailed:
+      "Could not read the on-chain admin. Refresh and try again.",
     notOwner: "This wallet is not the registry owner — list is read-only.",
     updateAgent: "Update Agent",
     registerAgent: "Register Agent",
@@ -457,7 +458,7 @@ export const en: Dictionary = {
     fillFromHealth: "Fill name, address and categories",
     noAddress: "No address returned",
     addressLabel: "Agent address",
-    addressPlaceholder: "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU",
+    addressPlaceholder: "7xKXtg......osgAsU",
     nameLabel: "Name",
     categoriesLabel: "Service categories (pick at least one)",
     needCategory: "Select at least one category",
@@ -483,7 +484,8 @@ export const en: Dictionary = {
     statusFailed: "Could not update provider status",
     alreadyRegistered:
       "This address is already registered. The program can only create a new provider account. Use the list switch to enable or disable it.",
-    errTextTooLong: "Name is at most 64 bytes. Description, website and API address are at most 128 bytes each.",
+    errTextTooLong:
+      "Name is at most 64 bytes. Description, website and API address are at most 128 bytes each.",
   },
 
   verify: {

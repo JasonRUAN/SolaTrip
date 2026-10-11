@@ -418,7 +418,8 @@ export const zh = {
     modeManual: "手工输入",
     scanHint: "将旅客凭证二维码放入框内",
     scanOpening: "正在打开摄像头…",
-    cameraDenied: "没有摄像头权限。请在浏览器里允许使用摄像头，或改用手工输入。",
+    cameraDenied:
+      "没有摄像头权限。请在浏览器里允许使用摄像头，或改用手工输入。",
     cameraMissing: "这台电脑没有可用的摄像头，请改用手工输入。",
     cameraFailed: "摄像头打不开，请改用手工输入。",
     useManual: "改用手工输入",
@@ -447,7 +448,7 @@ export const zh = {
     fillFromHealth: "回填名称、地址与分类",
     noAddress: "未返回地址",
     addressLabel: "Agent 地址",
-    addressPlaceholder: "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU",
+    addressPlaceholder: "7xKXtg......osgAsU",
     nameLabel: "名称",
     categoriesLabel: "服务分类（至少选一，可多选）",
     needCategory: "请至少选择一个分类",
@@ -470,7 +471,8 @@ export const zh = {
     registered: "服务商已写入链上",
     registerFailed: "注册失败",
     statusFailed: "更新启停状态失败",
-    alreadyRegistered: "这个地址已经在链上注册过。合约只允许创建新的服务商账户，启停请用列表里的开关。",
+    alreadyRegistered:
+      "这个地址已经在链上注册过。合约只允许创建新的服务商账户，启停请用列表里的开关。",
     errTextTooLong: "名称最多 64 字节，简介、官网和 API 地址最多各 128 字节",
   },
 
