@@ -2,9 +2,9 @@
   "cluster": "devnet",
   "chainId": "solana:devnet",
   "deployed": true,
-  "programId": "GohAZHAeetcoxXZ19Mbinv2i6QTuwCyDptdM8C4VzMD5",
-  "usdcMint": "6GJoHajJtb22uHnUWjbGsx4yfyoo4EWGoHHwXcUtchLV",
-  "config": "4PywvWzHJ7Aif7PDiotnDVwK9SGWWCVDx4XiNBjyPTYc",
+  "programId": "5jBm1GQkGL6bWXXFtKbxLicxShThNCDAQm93Sd4FHmVx",
+  "usdcMint": "6G8jJkBzxxJcSngqs5KsHaW7Eo4F77Xrhsx19VRRy9DE",
+  "config": "3jFbYADtGR5oh7ADDiH2coBkKbM83kAn6vEr9nh9u6Ld",
   "orchestrator": "2pymZ24zE6AaVyfwj7V1qVsn2kxhGeoq54Tch4D4QEow",
   "agents": {
     "flight": "4sXdVBxi86pt7mNgUHrh6zsJiTfMt4njdLaCwWEmWsSu",
