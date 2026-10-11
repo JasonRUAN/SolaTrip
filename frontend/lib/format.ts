@@ -3,7 +3,7 @@ import { getDict, interpolate } from "./i18n";
 import { INTL_TAG, type Locale } from "./i18n/config";
 import type { Address, Hex } from "./types";
 
-/** atUSDC 精度 */
+/** tripUSDC 精度，与 USDC 一样是 6 位小数 */
 export const USDC_DECIMALS = 6;
 
 /** 最小单位 → 人类可读数字（不格式化千分位） */

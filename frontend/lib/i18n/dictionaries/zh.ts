@@ -244,8 +244,8 @@ export const zh = {
   pay: {
     stepConnect: "连接钱包",
     stepConnectHint: "Phantom / Solflare，使用 Solana devnet",
-    stepFaucet: "领取测试币",
-    stepFaucetHint: "每次 10,000 枚测试币，可重复领",
+    stepFaucet: "领取 tripUSDC",
+    stepFaucetHint: "每次 10,000 tripUSDC，可重复领",
     stepApprove: "授权结算合约",
     stepApproveHint: "Solana 付款由旅客签名直接划转，无需单独授权",
     stepPay: "确认支付",
@@ -261,14 +261,14 @@ export const zh = {
     approving: "授权中…",
     approve: "授权",
     waitingSignature: "等待钱包签名…",
-    claimingTokens: "领取测试币中…",
+    claimingTokens: "领取 tripUSDC 中…",
     checkingChain: "检查链上状态…",
     done: "已完成",
-    claimAndPay: "领取测试币并完成支付",
+    claimAndPay: "领取 tripUSDC 并完成支付",
     approveAndPay: "授权并支付（2 次签名）",
     confirmPay: "确认支付（1 次签名）",
     signatureNote:
-      "最多签 2 次（领测试币 / 支付）。后续分账与发券由后端编排器支付网络费。",
+      "最多签 2 次（领 tripUSDC / 支付）。后续分账与发券由后端编排器支付网络费。",
   },
 
   settlement: {
@@ -530,10 +530,10 @@ export const zh = {
     settlementDisconnected: "分账进度连接断开（{url}）：{msg}",
     walletNotConnected: "钱包未连接",
     noSol:
-      "钱包里没有 SOL，创建测试币账户需要付租金。请先在 Solana devnet 水龙头领取 SOL，然后再领测试币。",
+      "钱包里没有 SOL，创建 tripUSDC 账户需要付租金。请先在 Solana devnet 水龙头领取 SOL，然后再领 tripUSDC。",
     selfDealing:
       "当前钱包就是服务商「{provider}」的地址，合约不允许服务商给自己付款（ProviderIsTraveler）。请切换到旅客钱包后重试。",
-    insufficientBalance: "测试币余额不足：当前 {balance}，本单需要 {total}",
+    insufficientBalance: "tripUSDC 余额不足：当前 {balance}，本单需要 {total}",
     noOrderId: "编排服务没有返回订单号，支付已中止",
     payFailed: "支付失败",
     sseFailed: "SSE 连接失败：HTTP {status}",

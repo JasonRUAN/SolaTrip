@@ -247,8 +247,8 @@ export const en: Dictionary = {
   pay: {
     stepConnect: "Connect wallet",
     stepConnectHint: "Phantom / Solflare on Solana devnet",
-    stepFaucet: "Claim test tokens",
-    stepFaucetHint: "10,000 test tokens each time, repeatable",
+    stepFaucet: "Claim tripUSDC",
+    stepFaucetHint: "10,000 tripUSDC each time, repeatable",
     stepApprove: "Approve settlement contract",
     stepApproveHint:
       "Solana payment is signed by the traveler; there is no separate approval",
@@ -266,14 +266,14 @@ export const en: Dictionary = {
     approving: "Approving…",
     approve: "Approve",
     waitingSignature: "Waiting for wallet signature…",
-    claimingTokens: "Claiming test tokens…",
+    claimingTokens: "Claiming tripUSDC…",
     checkingChain: "Checking on-chain status…",
     done: "Done",
-    claimAndPay: "Claim test tokens and pay",
+    claimAndPay: "Claim tripUSDC and pay",
     approveAndPay: "Approve and pay (2 signatures)",
     confirmPay: "Confirm payment (1 signature)",
     signatureNote:
-      "At most 2 signatures (claim / pay). Later settlement and voucher minting are paid by the orchestrator.",
+      "At most 2 signatures (claim tripUSDC / pay). Later settlement and voucher minting are paid by the orchestrator.",
   },
 
   settlement: {
@@ -547,11 +547,11 @@ export const en: Dictionary = {
       "Settlement progress stream disconnected ({url}): {msg}",
     walletNotConnected: "Wallet not connected",
     noSol:
-      "This wallet has no SOL, so it cannot pay rent to create the test-token account. Claim devnet SOL first, then claim the test tokens.",
+      "This wallet has no SOL, so it cannot pay rent to create the tripUSDC account. Claim devnet SOL first, then claim tripUSDC.",
     selfDealing:
       "This wallet is the address of provider “{provider}”; the contract forbids a provider paying itself (ProviderIsTraveler). Switch to a traveler wallet and retry.",
     insufficientBalance:
-      "Not enough test tokens: balance {balance}, this order needs {total}",
+      "Not enough tripUSDC: balance {balance}, this order needs {total}",
     noOrderId:
       "The orchestrator did not return an order id, so payment stopped",
     payFailed: "Payment failed",
